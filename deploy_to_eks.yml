@@ -3,10 +3,9 @@
   hosts: localhost
   tasks:
     - name: Create Kubernetes Deployment
-      environment:
-        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
       shell: |
+        aws ecr get-login-password --region {{ aws_region }} |
+        docker login --username AWS --password-stdin {{ ecr_repository_url }}
         kubectl apply -f - <<EOF
         apiVersion: apps/v1
         kind: Deployment
@@ -33,6 +32,8 @@
  
     - name: Expose the Deployment as a Service
       shell: |
+        aws ecr get-login-password --region {{ aws_region }} |
+        docker login --username AWS --password-stdin {{ ecr_repository_url }}
         kubectl apply -f - <<EOF
         apiVersion: v1
         kind: Service
