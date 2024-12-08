@@ -44,3 +44,5 @@
                 targetPort: 5000
             type: LoadBalancer
           EOF
+        environment:
+          KUBECONFIG: "/home/bharath/.kube/config"
