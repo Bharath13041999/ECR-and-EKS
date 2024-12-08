@@ -4,7 +4,7 @@
     tasks:
       - name: Create Kubernetes Deployment
         shell: |
-          kubectl apply -f - <<EOF
+          kubectl apply -f --validate=false - <<EOF
           apiVersion: apps/v1
           kind: Deployment
           metadata:
@@ -30,7 +30,7 @@
    
       - name: Expose the Deployment as a Service
         shell: |
-          kubectl apply -f - <<EOF
+          kubectl apply -f --validate=false - <<EOF
           apiVersion: v1
           kind: Service
           metadata:
