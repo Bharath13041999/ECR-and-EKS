@@ -46,5 +46,6 @@ def home():
     return render_template_string(html, message=greeting.get_message(), items=items)
  
 if __name__ == '__main__':
-    # Run the app
+ {  # Run the app
 app.run(debug=True)
+ }
