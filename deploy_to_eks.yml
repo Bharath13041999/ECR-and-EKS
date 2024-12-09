@@ -22,10 +22,10 @@
                   app: flask-app
               spec:
                 containers:
-                - name: flask-app
-                  image: {{ ecr_repository_url }}:{{ image_tag }}
-                  ports:
-                  - containerPort: 5000
+                  - name: flask-app
+                    image: 116981771758.dkr.ecr.us-east-1.amazonaws.com/flask-app-repo:latest
+                    ports:
+                      - containerPort: 5000
           EOF
    
       - name: Expose the Deployment as a Service
@@ -44,5 +44,4 @@
                 targetPort: 5000
             type: LoadBalancer
           EOF
-        environment:
-          KUBECONFIG: "/home/bharath/.kube/config"
+      
